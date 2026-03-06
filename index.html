@@ -15,13 +15,49 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
+  <!-- fav icon -->
+  <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
 
 </head>
 
-<body class="font-style">
+<body class="font-style bg-[#F8FAFC]">
+
+  <section class="bg-white min-h-screen max-w-lg mx-auto mb-14">
+    <div class="p-8">
+      <div class="flex justify-center items-center mb-5">
+        <img src="./assets/github-logo.png" alt="" class="w-24">
+      </div>
+      <h3 class="text-center text-[#1F2937] font-bold text-3xl mb-2">GitHub Issues Tracker</h3>
+      <p class="text-center text-[#64748B] text-xl">Sign in to manage your issues</p>
+    </div>
+    <div class="mb-3 mx-auto">
+      <fieldset class="fieldset rounded-box w-xs p-4 mx-auto shadow w-full">
+
+        <label class="label font-bold text-[#1F2937]">Username</label>
+        <input type="email" class="input" placeholder="Enter Username" />
+        <p class="text-[#4A00FF]">Default: admin</p>
+
+        <label class="label font-bold text-[#1F2937]">Password</label>
+        <input type="password" class="input" placeholder="Enter Password" />
+        <p class="text-[#4A00FF]">Default: admin123</p>
+        <button class="btn btn-primary mt-4">Sign In</button>
+      </fieldset>
+
+
+    </div>
+    <p class="text-center mb-3">OR</p>
+    <p class="text-center mb-3 text-[#64748B]">Demo Credentials:</p>
+    <div class="bg-gray-100 text-center items-center py-6 max-w-md mx-auto">
+      <p><span class="font-bold">Username:</span> admin</p>
+      <p><span class="font-bold">Password:</span> admin123</p>
+    </div>
+
+
+  </section>
 
 
 
+  <script src="./script/login.js"></script>
 </body>
 
 </html>
