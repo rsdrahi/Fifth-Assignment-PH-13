@@ -22,8 +22,9 @@
 
 <body class="font-style bg-[#F8FAFC]">
 
+  <!-- header -->
 
-  <header>
+  <header class="mb-14">
     <nav class="flex justify-between p-5 bg-white shadow">
       <div class="flex justify-between gap-2">
         <img src="./assets/github-logo.png" alt="" class="w-10">
@@ -35,6 +36,37 @@
       </div>
     </nav>
   </header>
+
+  <!-- main -->
+
+  <main class="max-w-6xl mx-auto">
+
+    <div class="flex p-4 gap-2 mb-6 shadow-md rounded-md bg-white">
+      <button class="btn btn-primary">All</button>
+      <button class="btn btn-outline">Open</button>
+      <button class="btn btn-outline">Closed</button>
+    </div>
+
+    <div class="flex justify-between p-6 shadow bg-white items-center">
+      <div class="leftdiv flex items-center gap-3">
+        <img src="./assets/Aperture.png" alt="" class="w-[50px]">
+        <div>
+          <h4 class="font-bold text-xl">50 Issues</h4>
+          <p class="text-[#64748B]">Track and manage your project issues</p>
+        </div>
+      </div>
+
+      <div class="rightdiv flex gap-2">
+        <p class="font-medium">Open</p>
+        <p class="font-medium">Closed</p>
+      </div>
+    </div>
+
+    <div></div>
+
+  </main>
+
+
 
 
   <script src="./script/login.js"></script>
