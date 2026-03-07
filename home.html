@@ -40,14 +40,14 @@
   <!-- main -->
 
   <main class="max-w-6xl mx-auto">
-
-    <div class="flex p-4 gap-2 mb-6 shadow-md rounded-md bg-white">
+    <!-- tabs -->
+    <div id="tabs-container" class="flex p-4 gap-2 mb-6 shadow-md rounded-md bg-white">
       <button class="btn btn-primary">All</button>
       <button class="btn btn-outline">Open</button>
       <button class="btn btn-outline">Closed</button>
     </div>
-
-    <div class="flex justify-between p-6 shadow bg-white items-center">
+    <!-- summary -->
+    <div id="issue-summary" class="flex justify-between p-6 shadow bg-white items-center">
       <div class="leftdiv flex items-center gap-3">
         <img src="./assets/Aperture.png" alt="" class="w-[50px]">
         <div>
@@ -61,15 +61,34 @@
         <p class="font-medium">Closed</p>
       </div>
     </div>
+    <!-- card -->
+    <div id="issue-container" class="grid grid-cols-1 md:grid-cols-2 mt-6">
+      <div>
+        <div class="flex justify-between mb-4">
+          <img src="./assets/Open-Status.png" alt="" class="">
+          <button class="btn btn-error rounded-full">HIGH</button>
+        </div>
+        <h2 class="text-[#1F2937] font-medium text-xl mb-2">Fix navigation menu on mobile devices</h2>
+        <p class="text-[#64748B]">The navigation menu doesn't collapse properly on mobile devices...</p>
+        <div class="gap-2 my-3">
+          <button class="btn btn-error rounded-full">Bug</button>
+          <button class="btn btn-warning rounded-full">help wanted</button>
+        </div>
+        <hr class="text-gray-300 mb-3">
+        <div>
+          <p class="text-[#64748B]">#1 by john_doe</p>
+          <p class="text-[#64748B]">1/15/2024</p>
+        </div>
+      </div>
 
-    <div></div>
+    </div>
 
   </main>
 
 
 
 
-  <script src="./script/login.js"></script>
+  <script src="./script/home.js"></script>
 </body>
 
 </html>
