@@ -1,1 +1,2 @@
-console.log("home file connected");
+// console.log("home file connected");
+
