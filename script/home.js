@@ -1,6 +1,18 @@
 // console.log("home file connected");
 
+// modal - priority
+// modal - author
+// moldal - description
+// modal - status
+// modal-title
 const issueContainer = document.getElementById("issue-container");
+const issueModal = document.getElementById("issue_modal");
+const modalTitle = document.getElementById("modal-title");
+const modalStatus = document.getElementById("modal-status");
+const modalDescription = document.getElementById("modal-description");
+const modalAuthor = document.getElementById("modal-author");
+const modalPriority = document.getElementById("modal-priority");
+
 
 async function loadIssue() {
   const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
@@ -10,10 +22,13 @@ async function loadIssue() {
 }
 
 function displayIssue(issues) {
-  console.log(issues);
+  // console.log(issues);
   issues.forEach(issue => {
     // console.log(issue);
     const card = document.createElement('div');
+    card.addEventListener('click', function () {
+      openIssueModal(issue.id);
+    })
     card.className = "bg-white rounded-sm p-3 shadow-lg border-t-4 border-green-600";
     card.innerHTML = `<div class="flex justify-between mb-4 gap-5">
           <img src="./assets/Open-Status.png" alt="" class="max-w-6">
@@ -38,6 +53,20 @@ function displayIssue(issues) {
         </div>`
     issueContainer.appendChild(card);
   })
+}
+
+async function openIssueModal(issueId) {
+  console.log(issueId, "issueID")
+  const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueId}`);
+  const data = await res.json()
+  const issueDetails = data.data;
+  console.log(issueDetails, "data");
+  issueModal.showModal();
+  modalTitle.textContent = issueDetails.title
+  modalStatus.textContent = issueDetails.status
+  modalDescription.textContent = issueDetails.description
+  modalAuthor.textContent = issueDetails.author
+  modalPriority.textContent = issueDetails.priority
 }
 
 loadIssue()
