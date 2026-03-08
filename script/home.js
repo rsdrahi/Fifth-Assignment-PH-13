@@ -21,6 +21,14 @@ function showLoading() {
 function hideLoading() {
     loadingSpinner.classList.add("hidden");
 }
+function activeButton() {
+  allBtn.classList.remove("btn-primary");
+  allBtn.classList.add("btn-outline");
+  openBtn.classList.remove("btn-primary");
+  openBtn.classList.add("btn-outline");
+  closedBtn.classList.remove("btn-primary");
+  closedBtn.classList.add("btn-outline");
+}
 
 async function loadIssue() {
   showLoading();
@@ -43,18 +51,24 @@ function displayIssue(issues) {
     card.addEventListener('click', function () {
       openIssueModal(issue.id);
     })
+    const statusImage = issue.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"
+    console.log(statusImage);
     const borderColor = issue.status === "open" ? "border-t-green-700" : "border-t-purple-700";
     card.className = `bg-white rounded-sm p-3 shadow-lg border-t-4 ${borderColor}`;
+    let labelsHTML = "";
+
+    issue.labels.forEach(label => {
+    labelsHTML += `<button class="badge badge-warning rounded-full p-4 font-medium">${label}</button>`;
+    });
     card.innerHTML = `<div class="flex justify-between mb-4 gap-5">
-          <img src="./assets/Open-Status.png" alt="" class="max-w-6">
+          <img src="${statusImage}" alt="" class="max-w-6">
           <button class="badge badge-error rounded-full font-medium">${issue.priority}</button>
         </div>
         <h2 class="text-[#1F2937] font-bold mb-2">${issue.title}</h2>
         <p class="text-[#64748B] line-clamp-2 text-sm">${issue.description}</p>
         <div class="flex gap-2 my-3">
-          <button class="badge badge-error rounded-full p-4 font-medium">BUG</button>
-          <button class="badge badge-warning rounded-full p-4 font-medium">HELP WANTED</button>
-        </div>
+        ${labelsHTML}
+       </div>
         <hr class="text-gray-300 mb-3">
         <div class="flex justify-between">
          <div>
@@ -85,11 +99,17 @@ async function openIssueModal(issueId) {
 }
 
 allBtn.addEventListener('click', () => {
+  activeButton();
+  allBtn.classList.remove("btn-outline");
+  allBtn.classList.add("btn-primary");
   displayIssue(allIssues);
 })
 
 openBtn.addEventListener('click', () => {
   showLoading();
+  activeButton();
+  openBtn.classList.remove("btn-outline");
+  openBtn.classList.add("btn-primary");
   const openIssue = allIssues.filter(issue => issue.status === 'open');
   displayIssue(openIssue);
   hideLoading();
@@ -97,11 +117,13 @@ openBtn.addEventListener('click', () => {
 
 closedBtn.addEventListener('click', () => {
   showLoading();
+  activeButton();
+  closedBtn.classList.remove("btn-outline");
+  closedBtn.classList.add("btn-primary");
   const closedIssue = allIssues.filter(issue => issue.status === "closed");
   displayIssue(closedIssue);
   hideLoading();
 })
-
 
 
 loadIssue();
