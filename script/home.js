@@ -11,7 +11,8 @@ const openBtn = document.getElementById("open-btn");
 const closedBtn = document.getElementById("closed-btn");
 const allBtn = document.getElementById("all-btn");
 const issueCounter = document.getElementById("issue-counter");
-const loadingSpinner = document.getElementById("loading-spinner")
+const loadingSpinner = document.getElementById("loading-spinner");
+const searchInput = document.getElementById("search-input");
 let allIssues = [];
 
 function showLoading() {
@@ -101,9 +102,22 @@ closedBtn.addEventListener('click', () => {
   hideLoading();
 })
 
+loadIssue();
+
+  searchInput.addEventListener("keyup", (e) => {
+    const inputSearch = e.target.value;
+    console.log(inputSearch);
+  });
 
 
-loadIssue()
+
+
+
+
+
+
+
+
 
 // "id": 42,
 // "title": "Add role-based access control",
