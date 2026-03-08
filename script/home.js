@@ -54,7 +54,7 @@ function displayIssue(issues) {
     const statusImage = issue.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"
     console.log(statusImage);
     const borderColor = issue.status === "open" ? "border-t-green-700" : "border-t-purple-700";
-    card.className = `bg-white rounded-sm p-3 shadow-lg border-t-4 ${borderColor}`;
+    card.className = `bg-white rounded-sm p-3 shadow-lg border-t-4 ${borderColor} card`;
     let labelsHTML = "";
 
     issue.labels.forEach(label => {
