@@ -10,6 +10,7 @@ const modalPriority = document.getElementById("modal-priority");
 const openBtn = document.getElementById("open-btn");
 const closedBtn = document.getElementById("closed-btn");
 const allBtn = document.getElementById("all-btn");
+const issueCounter = document.getElementById("issue-counter");
 let allIssues = [];
 
 
@@ -26,6 +27,8 @@ async function loadIssue() {
 function displayIssue(issues) {
   // console.log(issues);
   issueContainer.innerHTML = "";
+  // console.log(issues.length)
+  issueCounter.innerText = `${issues.length} Issues`;
   issues.forEach(issue => {
     // console.log(issue);
     const card = document.createElement('div');
