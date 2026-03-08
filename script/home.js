@@ -11,17 +11,24 @@ const openBtn = document.getElementById("open-btn");
 const closedBtn = document.getElementById("closed-btn");
 const allBtn = document.getElementById("all-btn");
 const issueCounter = document.getElementById("issue-counter");
+const loadingSpinner = document.getElementById("loading-spinner")
 let allIssues = [];
 
-
+function showLoading() {
+    loadingSpinner.classList.remove("hidden");
+}
+function hideLoading() {
+    loadingSpinner.classList.add("hidden");
+}
 
 async function loadIssue() {
+  showLoading();
   const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
   const data = await res.json();
   // console.log(data);
   allIssues = data.data
-
   displayIssue(allIssues);
+  hideLoading();
 }
 
 function displayIssue(issues) {
@@ -77,17 +84,21 @@ async function openIssueModal(issueId) {
 }
 
 allBtn.addEventListener('click', () => {
-  displayIssue(allIssues)
+  displayIssue(allIssues);
 })
 
 openBtn.addEventListener('click', () => {
+  showLoading();
   const openIssue = allIssues.filter(issue => issue.status === 'open');
   displayIssue(openIssue);
+  hideLoading();
 })
 
 closedBtn.addEventListener('click', () => {
+  showLoading();
   const closedIssue = allIssues.filter(issue => issue.status === "closed");
   displayIssue(closedIssue);
+  hideLoading();
 })
 
 
