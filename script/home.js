@@ -102,12 +102,23 @@ closedBtn.addEventListener('click', () => {
   hideLoading();
 })
 
+
+
 loadIssue();
 
-  searchInput.addEventListener("keyup", (e) => {
-    const inputSearch = e.target.value;
-    console.log(inputSearch);
-  });
+searchInput.addEventListener("keydown", (e) => {
+  const inputSearch = e.target.value;
+  console.log(inputSearch);
+  searchIssue(inputSearch);
+});
+  
+async function searchIssue(inputSearch) {
+  const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputSearch}`);
+  const data = await res.json();
+  console.log(data);
+  displayIssue(data.data);
+}
+
 
 
 
