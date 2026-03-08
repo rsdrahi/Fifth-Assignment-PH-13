@@ -1,10 +1,5 @@
 // console.log("home file connected");
 
-// modal - priority
-// modal - author
-// moldal - description
-// modal - status
-// modal-title
 const issueContainer = document.getElementById("issue-container");
 const issueModal = document.getElementById("issue_modal");
 const modalTitle = document.getElementById("modal-title");
@@ -12,24 +7,33 @@ const modalStatus = document.getElementById("modal-status");
 const modalDescription = document.getElementById("modal-description");
 const modalAuthor = document.getElementById("modal-author");
 const modalPriority = document.getElementById("modal-priority");
+const openBtn = document.getElementById("open-btn");
+const closedBtn = document.getElementById("closed-btn");
+const allBtn = document.getElementById("all-btn");
+let allIssues = [];
+
 
 
 async function loadIssue() {
   const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
   const data = await res.json();
   // console.log(data);
-  displayIssue(data.data);
+  allIssues = data.data
+
+  displayIssue(allIssues);
 }
 
 function displayIssue(issues) {
   // console.log(issues);
+  issueContainer.innerHTML = "";
   issues.forEach(issue => {
     // console.log(issue);
     const card = document.createElement('div');
     card.addEventListener('click', function () {
       openIssueModal(issue.id);
     })
-    card.className = "bg-white rounded-sm p-3 shadow-lg border-t-4 border-green-600";
+    const borderColor = issue.status === "open" ? "border-t-green-700" : "border-t-purple-700";
+    card.className = `bg-white rounded-sm p-3 shadow-lg border-t-4 ${borderColor}`;
     card.innerHTML = `<div class="flex justify-between mb-4 gap-5">
           <img src="./assets/Open-Status.png" alt="" class="max-w-6">
           <button class="badge badge-error rounded-full font-medium">${issue.priority}</button>
@@ -68,6 +72,22 @@ async function openIssueModal(issueId) {
   modalAuthor.textContent = issueDetails.author
   modalPriority.textContent = issueDetails.priority
 }
+
+allBtn.addEventListener('click', () => {
+  displayIssue(allIssues)
+})
+
+openBtn.addEventListener('click', () => {
+  const openIssue = allIssues.filter(issue => issue.status === 'open');
+  displayIssue(openIssue);
+})
+
+closedBtn.addEventListener('click', () => {
+  const closedIssue = allIssues.filter(issue => issue.status === "closed");
+  displayIssue(closedIssue);
+})
+
+
 
 loadIssue()
 
